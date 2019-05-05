@@ -3,7 +3,7 @@ Textual Speech generation using LSTM network
 
 We have used a Recurrent Neural Network to generate Word Vectors from a Presidential Speech text.
 
-## Datset
+## Dataset
 Dataset used is the 'Corpus of Presidential Speeches' by Grammer Lab. Link as follows:
 
 http://www.thegrammarlab.com/?nor-portfolio=corpus-of-presidential-speeches-cops-and-a-clintontrump-corpus#
@@ -55,7 +55,7 @@ The dataset consist of 43 sets of presidential speeches for 43 different Preside
 
 We initially tried using Lyndon B. Johnson's speeches as it has 71 speeches(With 71 individual .txt files). We concatenated these 71 files into a single .txt file. This summed up to a 2.46MM words and a vocabulary size of 9806. This requires huge amount of memory. We tried executing on Google Colaboratory which provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. It ran out of memory while trying to compute the one-hot encoding vector for output variable Y (Even before we started training). 
 
-Hence, we are using Abraham Lincoln's speeches with 15 text files. Concatenating these 15 speeches gives 1.26M words and a vocabulary size of 6308. Although this succeeded in obtaining the output vector, the amount of time taken for training was huge. To fix that we used NLTK library for Lemmatization and Stemming.
+Hence, we are using Abraham Lincoln's speeches with 15 text files. Concatenating these 15 speeches gives 1.01M words and a vocabulary size of 6308. Although this succeeded in obtaining the output vector, the amount of time taken for training was huge. To fix that we used NLTK library for Lemmatization and Stemming.
 
 ## Data Pre-Processing
 The text files contain several punctuation-symbols, numbers, spacings and word inflection. It is important to be careful and try to remove characters or letters such that it helps reduce the vocabulary size. Otherwise if vocabulary is large the numbers of classes increases. And the output layer will now have too many classes to predict. Large number of classes will slow down training and will require large resources and time to converge.
