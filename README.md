@@ -53,7 +53,7 @@ The dataset consist of 43 sets of presidential speeches for 43 different Preside
 *  jqadams's  8 speeches
 *  jackson's  26 speeches
 
-We initially tried using Lyndon B. Johnson's speeches as it has 71 speeches(With 71 individual .txt files). We concatenated these 71 files into a single .txt file. This summed up to a 2.46MM words and a vocabulary size of 9806. Developing a Speech Generator on this requires huge amount of memory. We tried executing on Google Colaboratory which provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. Memory was insufficient for computing the one-hot encoding vector because this vector will be of size (2.46MM x 9806).
+We initially tried using Lyndon B. Johnson's speeches as it has 71 speeches(With 71 individual .txt files). We concatenated these 71 files into a single .txt file. This summed up to a 2.46MM words and a vocabulary size of 9806. Developing a Speech Generator on this requires huge amount of memory. We tried executing on Google Colaboratory which provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. Memory was insufficient for computing the embedding vector because this vector will be of size (2.46MM x 9806).
 
 Hence, we are using Abraham Lincoln's speeches with 15 text files. Concatenating these 15 speeches gives 1.01M words and a vocabulary size of 6308. Although this succeeded in obtaining the one-hot vector, it consumed a substantial portion of the memory. Using NLTK library for Lemmatization and Stemming we reduce vocabulary.
 
