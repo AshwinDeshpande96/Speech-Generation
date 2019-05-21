@@ -139,4 +139,4 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
              and: and,
              thirty: thirty,
              mm: mm }
-    This however creates an issue: dict will have only one entry for a root word of different inflections.
+   This however creates an issue: dict will have only one entry for a root word of different inflections.
