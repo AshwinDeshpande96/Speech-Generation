@@ -53,9 +53,9 @@ The dataset consist of 43 sets of presidential speeches for 43 different Preside
 *  jqadams's  8 speeches
 *  jackson's  26 speeches
 
-I initially tried using Lyndon B. Johnson's speeches as it has 71 speeches(With 71 individual .txt files). I concatenated these 71 files into a single .txt file. This summed up to a 2.46MM words and a vocabulary size of 9806. Developing a Speech Generator on this requires huge amount of memory. I tried executing on Google Colaboratory which provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. Memory was insufficient for computing the embedding vector because this vector will be of size (2.46MM x 9806).
+I initially tried using Lyndon B. Johnson's speeches as it has 71 speeches(With 71 individual .txt files). I concatenated these 71 files into a single .txt file. This summed up to a 2.46MM words and a vocabulary size of 9806. Developing a Speech Generator on this requires huge amount of memory. I tried executing on Google Colaboratory which provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. Memory was insufficient for computing the one-hot vector because this vector will be of size (2.46MM x 9806).
 
-Hence, I am using Abraham Lincoln's speeches with 15 text files. Concatenating these 15 speeches gives 1.01M words and a vocabulary size of |V| = 6308. Although this succeeded in obtaining the one-hot vector, it consumed a substantial portion of the memory. NLTK library for Lemmatization and Stemming is a handy tool to trim the vocabulary.
+Hence, I am using Abraham Lincoln's speeches with 15 text files. Concatenating these 15 speeches gives 1.01M words and a vocabulary size of |V| = 6308. Although this succeeded in obtaining the one-hot vector, it consumed a substantial portion of the memory. NLTK library for Lemmatization and Stemming is a handy tool for pruning the vocabulary.
 
 Furthermore, after data pre-processing the Vanilla LSTM Model has a bottleneck at the Softmax Layer (Output Layer) due its size: O(|V|) and slows down training. This can addressed using different variations of Softmax Layer and different Output Layers altogether. Following are the Papers that help in this area.
 * Strategies for Training Large Vocabulary Neural Language Models - (Chen, Grangier, Auli - 2015)
@@ -82,7 +82,8 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
    This is done using a simple python command and requires no extra libraries:
     
     text = text.replace(symbol, ' ')
-    Output: text = "Todays weather condition is cloudy with a 76 of rain . Temperature may remain 
+    Output: 
+            text = "Todays weather condition is cloudy with a 76 of rain . Temperature may remain 
     cool at 21 C with Humidity 61 . Rainfall so far is measured at 130mm ."
     
    These symbols are replaced by a space. Notice that we do not replace inverted commas by a space as word such as John's will
@@ -99,7 +100,8 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
     
     num_set = re.findall(r'\d+', text)
     
-    Output: num_set : [76, 21, 61, 130]
+    Output: 
+            num_set : [76, 21, 61, 130]
    Now we have all the numbers in the text. We now convert into its word form. For this we use a Python Library - inflect.
    Code for this is as follows:
     
@@ -108,13 +110,32 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
         word_form = p.number_to_words(num)
         text = text.replace(num, word_form)
     
-    Output: text = "Todays weather condition is cloudy with a seventy six of rain . Temperature may remain 
+    Output: 
+            text = "Todays weather condition is cloudy with a seventy six of rain . Temperature may remain 
     cool at twenty one C with Humidity sixt one . Rainfall so far is measured at one hundred and thirty mm ."
    Numerical years will be written as 1976 is one thousand and seventy six rather than Nineteen Seventy Six.
 ### 1.2.3. Word Inflections are reduced to its root words:
 
   Using Lancaster Stemming and WordNet Lemmatization we brought down Vocabulary to 3737.
   
-    Output: text = "today weath condit is cloudy with a seventy six of rain . temp may remain 
+    Output: 
+            text = "today weath condit is cloudy with a seventy six of rain . temp may remain 
     cool at twenty on c with humid sixt on . rainfal so far is meas at on hundr and thirty mm ."
-  
+  These words without their inflection make little sense, hence a dictionary variable is used where each root word entry is mapped to it's original inflection:
+    
+    dict = { today: Today's,
+             weath: weather,
+             condit: condition,
+             is: is,
+             cloudy: cloudy,
+             with:
+             .
+             .
+             .
+             .
+             .
+             hundr: hundred,
+             and: and,
+             thirty: thirty,
+             mm: mm }
+             
