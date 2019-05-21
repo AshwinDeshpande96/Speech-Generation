@@ -3,7 +3,7 @@ Textual Speech generation using LSTM network
 
 We have used a Recurrent Neural Network to generate Word Vectors from a Presidential Speech text.
 
-## Dataset
+## 1.1 Dataset
 Dataset used is the 'Corpus of Presidential Speeches' by Grammer Lab. Link as follows:
 
 http://www.thegrammarlab.com/?nor-portfolio=corpus-of-presidential-speeches-cops-and-a-clintontrump-corpus#
@@ -55,15 +55,20 @@ The dataset consist of 43 sets of presidential speeches for 43 different Preside
 
 We initially tried using Lyndon B. Johnson's speeches as it has 71 speeches(With 71 individual .txt files). We concatenated these 71 files into a single .txt file. This summed up to a 2.46MM words and a vocabulary size of 9806. Developing a Speech Generator on this requires huge amount of memory. We tried executing on Google Colaboratory which provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. Memory was insufficient for computing the embedding vector because this vector will be of size (2.46MM x 9806).
 
-Hence, we are using Abraham Lincoln's speeches with 15 text files. Concatenating these 15 speeches gives 1.01M words and a vocabulary size of 6308. Although this succeeded in obtaining the one-hot vector, it consumed a substantial portion of the memory. Using NLTK library for Lemmatization and Stemming we reduce vocabulary.
+Hence, we are using Abraham Lincoln's speeches with 15 text files. Concatenating these 15 speeches gives 1.01M words and a vocabulary size of |V| = 6308. Although this succeeded in obtaining the one-hot vector, it consumed a substantial portion of the memory. Using NLTK library for Lemmatization and Stemming we reduce vocabulary.
 
-## Data Pre-Processing
+Furthermore, after data pre-processing the Vanilla LSTM Model has a bottleneck at the Softmax Layer (Output Layer) due its size: O(|V|) and slows down training. This can addressed using different variations of Softmax Layer and different Output Layers altogether. Following are the Papers that help in this area.
+* Strategies for Training Large Vocabulary Neural Language Models - (Chen, Grangier, Auli - 2015)
+* Hierarchical Probabilistic Neural Network Language Model - (Morin, Bengio - 2005)
+* A Scalable Hierarchical Distributed Language Model - (Mnih, Hinton - 2008)
+
+## 1.2 Data Pre-Processing
 The text files contain several punctuation-symbols, numbers, spacings and word inflection. It is important to be careful and try to remove characters or letters such that it helps reduce the vocabulary size. Otherwise if vocabulary is large the numbers of classes increases. And the output layer will now have too many classes to predict. Large number of classes will slow down training and will require large resources and time to converge.
     
     text = "Today's weather condition is cloudy with a 76% of rain. Temperature may remain 
     cool at 21°C with Humidity 61%. Rainfall so far is measured at 130mm."
 
-### Following punctuations have been removed with the exception of period:
+### 1.2.1 Following punctuations have been removed with the exception of period:
 
     " & , ? / : ; < > $ #  @ ! % * ( ) [ ] { } \n -
    
@@ -82,7 +87,7 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
    If the text contains - it's and its - both, although they mean different it is treated as the same word. If it 
    appears in the generated text it is open to interpretation for the reader.
 
-### Numbers are replaced by their word form:
+### 1.2.2 Numbers are replaced by their word form:
    First we need to find the numbers in the text. We do this using regular expressions.
    
     import re
@@ -102,7 +107,7 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
     Output: text = "Todays weather condition is cloudy with a seventy six of rain . Temperature may remain 
     cool at twenty one C with Humidity sixt one . Rainfall so far is measured at one hundred and thirty mm ."
    Numerical years will be written as 1976 is one thousand and seventy six rather than Nineteen Seventy Six.
-### Word Inflections are reduced to its root words:
+### 1.2.3 Word Inflections are reduced to its root words:
 
   Using Lancaster Stemming and WordNet Lemmatization we brought down Vocabulary to 3737.
   
