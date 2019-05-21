@@ -62,14 +62,15 @@ Furthermore, after data pre-processing the Vanilla LSTM Model has a bottleneck a
 * Hierarchical Probabilistic Neural Network Language Model - (Morin, Bengio - 2005)
 * A Scalable Hierarchical Distributed Language Model - (Mnih, Hinton - 2008)
 
+
 <!--- An implementation of Hierarchical Softmax Layer will soon be published soon--->
 
 ## 1.2. Data Pre-Processing
 The text files contain several punctuation-symbols, numbers, spacings and word inflection. It is important to be careful and try to remove characters or letters such that it helps reduce the vocabulary size. Otherwise if vocabulary is large the numbers of classes increases. And the output layer will now have too many classes to predict. Large number of classes will slow down training and will require large resources and time to converge.
-    
+    ```
     text = "Today's weather condition is cloudy with a 76% of rain. Temperature may remain 
     cool at 21°C with Humidity 61%. Rainfall so far is measured at 130mm."
-
+    ```
 ### 1.2.1. Following punctuations have been removed with the exception of period:
 
     " & , ? / : ; < > $ #  @ ! % * ( ) [ ] { } \n -
@@ -79,11 +80,11 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
    generated speech text to make sense.
    
    This is done using a simple python command and requires no extra libraries:
-   
+    ```
     text = text.replace(symbol, ' ')
     Output: text = "Todays weather condition is cloudy with a 76 of rain . Temperature may remain 
     cool at 21 C with Humidity 61 . Rainfall so far is measured at 130mm ."
-    
+    ```
    These symbols are replaced by a space. Notice that we do not replace inverted commas by a space as word such as John's will
    obtain two words John and the letter s. Instead we replace ' with empty string so that John's --> Johns.
    If the text contains - it's and its - both, although they mean different it is treated as the same word. If it 
@@ -91,21 +92,22 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
 
 ### 1.2.2. Numbers are replaced by their word form:
    First we need to find the numbers in the text. We do this using regular expressions.
-   
+    ```
     import re
-   
+    ```
    Following code returns a list of numbers in found in text. 
-   
+    ```
     num_set = re.findall(r'\d+', text)
-    
+    ```
     Output: num_set : [76, 21, 61, 130]
    Now we have all the numbers in the text. We now convert into its word form. For this we use a Python Library - inflect.
    Code for this is as follows:
-   
+    ```
     p = inflect.engine()
     for num in num_set:
         word_form = p.number_to_words(num)
         text = text.replace(num, word_form)
+    ```
     Output: text = "Todays weather condition is cloudy with a seventy six of rain . Temperature may remain 
     cool at twenty one C with Humidity sixt one . Rainfall so far is measured at one hundred and thirty mm ."
    Numerical years will be written as 1976 is one thousand and seventy six rather than Nineteen Seventy Six.
