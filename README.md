@@ -53,14 +53,16 @@ The dataset consist of 43 sets of presidential speeches for 43 different Preside
 *  jqadams's  8 speeches
 *  jackson's  26 speeches
 
-We initially tried using Lyndon B. Johnson's speeches as it has 71 speeches(With 71 individual .txt files). We concatenated these 71 files into a single .txt file. This summed up to a 2.46MM words and a vocabulary size of 9806. Developing a Speech Generator on this requires huge amount of memory. We tried executing on Google Colaboratory which provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. Memory was insufficient for computing the embedding vector because this vector will be of size (2.46MM x 9806).
+I initially tried using Lyndon B. Johnson's speeches as it has 71 speeches(With 71 individual .txt files). I concatenated these 71 files into a single .txt file. This summed up to a 2.46MM words and a vocabulary size of 9806. Developing a Speech Generator on this requires huge amount of memory. I tried executing on Google Colaboratory which provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. Memory was insufficient for computing the embedding vector because this vector will be of size (2.46MM x 9806).
 
-Hence, we are using Abraham Lincoln's speeches with 15 text files. Concatenating these 15 speeches gives 1.01M words and a vocabulary size of |V| = 6308. Although this succeeded in obtaining the one-hot vector, it consumed a substantial portion of the memory. Using NLTK library for Lemmatization and Stemming we reduce vocabulary.
+Hence, I am using Abraham Lincoln's speeches with 15 text files. Concatenating these 15 speeches gives 1.01M words and a vocabulary size of |V| = 6308. Although this succeeded in obtaining the one-hot vector, it consumed a substantial portion of the memory. NLTK library for Lemmatization and Stemming is a handy tool to trim the vocabulary.
 
 Furthermore, after data pre-processing the Vanilla LSTM Model has a bottleneck at the Softmax Layer (Output Layer) due its size: O(|V|) and slows down training. This can addressed using different variations of Softmax Layer and different Output Layers altogether. Following are the Papers that help in this area.
 * Strategies for Training Large Vocabulary Neural Language Models - (Chen, Grangier, Auli - 2015)
 * Hierarchical Probabilistic Neural Network Language Model - (Morin, Bengio - 2005)
 * A Scalable Hierarchical Distributed Language Model - (Mnih, Hinton - 2008)
+
+<!--- An implementation of Hierarchical Softmax Layer will soon be published soon--->
 
 ## 1.2. Data Pre-Processing
 The text files contain several punctuation-symbols, numbers, spacings and word inflection. It is important to be careful and try to remove characters or letters such that it helps reduce the vocabulary size. Otherwise if vocabulary is large the numbers of classes increases. And the output layer will now have too many classes to predict. Large number of classes will slow down training and will require large resources and time to converge.
