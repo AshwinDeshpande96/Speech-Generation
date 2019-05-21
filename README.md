@@ -121,7 +121,8 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
     Output: 
             text = "today weath condit is cloudy with a seventy six of rain . temp may remain 
     cool at twenty on c with humid sixt on . rainfal so far is meas at on hundr and thirty mm ."
-  These words without their inflection make little sense, hence a dictionary variable is used where each root word entry is mapped to it's original inflection:
+  These words without their inflection make little sense, hence a dictionary variable is used where each root word entry is
+  mapped to it's original inflection:
     
     dict = { today: Today's,
              weath: weather,
@@ -138,4 +139,4 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
              and: and,
              thirty: thirty,
              mm: mm }
-             
+    This however creates an issue: dict will have only one entry for a root word of different inflections.
