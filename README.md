@@ -3,7 +3,7 @@ Textual Speech generation using LSTM network
 
 We have used a Recurrent Neural Network to generate Word Vectors from a Presidential Speech text.
 
-## 1.1 Dataset
+## 1.1. Dataset
 Dataset used is the 'Corpus of Presidential Speeches' by Grammer Lab. Link as follows:
 
 http://www.thegrammarlab.com/?nor-portfolio=corpus-of-presidential-speeches-cops-and-a-clintontrump-corpus#
@@ -62,13 +62,13 @@ Furthermore, after data pre-processing the Vanilla LSTM Model has a bottleneck a
 * Hierarchical Probabilistic Neural Network Language Model - (Morin, Bengio - 2005)
 * A Scalable Hierarchical Distributed Language Model - (Mnih, Hinton - 2008)
 
-## 1.2 Data Pre-Processing
+## 1.2. Data Pre-Processing
 The text files contain several punctuation-symbols, numbers, spacings and word inflection. It is important to be careful and try to remove characters or letters such that it helps reduce the vocabulary size. Otherwise if vocabulary is large the numbers of classes increases. And the output layer will now have too many classes to predict. Large number of classes will slow down training and will require large resources and time to converge.
     
     text = "Today's weather condition is cloudy with a 76% of rain. Temperature may remain 
     cool at 21°C with Humidity 61%. Rainfall so far is measured at 130mm."
 
-### 1.2.1 Following punctuations have been removed with the exception of period:
+### 1.2.1. Following punctuations have been removed with the exception of period:
 
     " & , ? / : ; < > $ #  @ ! % * ( ) [ ] { } \n -
    
@@ -87,7 +87,7 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
    If the text contains - it's and its - both, although they mean different it is treated as the same word. If it 
    appears in the generated text it is open to interpretation for the reader.
 
-### 1.2.2 Numbers are replaced by their word form:
+### 1.2.2. Numbers are replaced by their word form:
    First we need to find the numbers in the text. We do this using regular expressions.
    
     import re
@@ -107,7 +107,7 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
     Output: text = "Todays weather condition is cloudy with a seventy six of rain . Temperature may remain 
     cool at twenty one C with Humidity sixt one . Rainfall so far is measured at one hundred and thirty mm ."
    Numerical years will be written as 1976 is one thousand and seventy six rather than Nineteen Seventy Six.
-### 1.2.3 Word Inflections are reduced to its root words:
+### 1.2.3. Word Inflections are reduced to its root words:
 
   Using Lancaster Stemming and WordNet Lemmatization we brought down Vocabulary to 3737.
   
