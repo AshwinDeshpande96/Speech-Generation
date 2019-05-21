@@ -128,7 +128,7 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
              condit: condition,
              is: is,
              cloudy: cloudy,
-             with:
+             with: with,
              .
              .
              .
