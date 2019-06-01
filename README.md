@@ -158,12 +158,12 @@ This approach has several disadvantages:
       To counter this problem, some probability mass from vocabulary is subtracted and assigned to the new word. But, how 
         much probability mass is to be given to new word? This cannot be estimated deterministically. But several novel 
         approaches have been proposed:
-        * Good–Turing discounting
-        * Witten–Bell discounting
-        * Lidstone's smoothing
-        * Stupid back-off
-        * Katz's back-off model
-        * Kneser–Ney smoothing
+* Good–Turing discounting
+* Witten–Bell discounting
+* Lidstone's smoothing
+* Stupid back-off
+* Katz's back-off model
+* Kneser–Ney smoothing
 
 We can see that deterministic approach such as n-gram do not take into account the contextual information in dataset. It is not possible to manually design an algorithm to recognize such patterns. In order to build an algorithm to identify such patterns we need to understand what the logic is supposed to look for. Neither do we have a method to validate if found pattern is correct.
 
