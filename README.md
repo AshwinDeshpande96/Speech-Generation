@@ -163,6 +163,7 @@ This approach has several disadvantages:
 * Stupid back-off
 * Katz's back-off model
 * Kneser–Ney smoothing
+
 For more details on n-gram language models: 
 * http://mi.eng.cam.ac.uk/~mjfg/asru15-chen.pdf
 * https://web.stanford.edu/~jurafsky/slp3/3.pdf
