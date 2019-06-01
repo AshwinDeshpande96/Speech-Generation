@@ -142,8 +142,21 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
    This however creates an issue: dict will have only one entry for a root word of different inflections.
    
 This is substantially larger than it's character wise prediction counterpart. In comparison, the vocabulary for character prediction in worst case is as large as the ASCII character set: 256 characters. For natural language however vocabulary will consist of '[a-z, A-Z]' and punctuation. 
-Prediction using character doesn't reflect human intelligence to form sentences. Humans learn to form sentences by recognizing a word's contextual importance i.e. humans can infer a word's meaning depending on it's pattern of occurence.
+Prediction using character doesn't reflect human intelligence of forming sentences. Humans learn to form sentences by recognizing a word's contextual importance i.e. humans can infer a word's meaning depending on it's pattern of occurence.
 
-n-gram models mimic this notion literally and calculate probabilities of next word succeeding a sequence based on it's prior occurence count. This is not always the case. To predict a word w<sub>i</sub>, preceded by a sequence of contextual words: [w<sub>i-1</sub>,w<sub>i-2</sub> . . . w<sub>1</sub>], the probability may not always be contingent to it's prior occurence count. 
-This approach has disadvantages:
-    1.  
+n-gram models mimic this notion and calculate probabilities of next word succeeding a sequence based on it's prior occurence count. But, to predict a word w<sub>i</sub>, preceded by a sequence of contextual words: [w<sub>i-1</sub>,w<sub>i-2</sub> . . . w<sub>1</sub>], the probability may not always be contingent to it's prior occurence count. 
+This approach has several disadvantages:
+1. Predicted w<sub>i</sub> may only occur as a part of word pair.
+        Given a dataset of news-media collected from San-Franisco Bay Area. It is natural that the word Fransisco occurs frequently in this text. Hence the probability P(w<sub>i</sub>='Fransisco') is very likely. Even though 'Fransisco' will almost never occur without 'San', P(w<sub>i</sub>='Fransisco') will be most probable even if w<sub>i-1</sub> is not 'San'. Vice-versa predicted P(w<sub>i</sub>='Fransisco') could be not likely if its frequency is low in a dataset, even if w<sub>i-1</sub> is 'San'.
+2. When w<sub>i</sub> does not occur in dataset but is the correct word after w<sub>i-1</sub> (It's first occurence in encountered in the test set)
+        To counter this problem, some probability mass from vocabulary is subtracted and assigned to the new word. But, how much probability mass is to be given to new word? This cannot be estimated deterministically. But several novel approaches have been proposed:
+* Good–Turing discounting
+* Witten–Bell discounting
+* Lidstone's smoothing
+* Stupid back-off
+* Katz's back-off model
+* Kneser–Ney smoothing
+
+We can see that deterministic approach such as n-gram do not take into account the contextual information in dataset. It is not possible to manually design an algorithm to recognize such patterns. In order to build an algorithm to identify such patterns we need to understand what the logic is look for. Neither do we have a method to validate such patterns.
+
+Recurrent Neural Network are best suited for this task. We treat the neural network as a black box. 
