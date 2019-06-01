@@ -156,15 +156,16 @@ This approach has several disadvantages:
 2. When w<sub>i</sub> does not occur in dataset but is the correct word after w<sub>i-1</sub> (It's first occurence is encountered in the test set)
         
       To counter this problem, some probability mass from vocabulary is subtracted and assigned to the new word. But, how 
-        much probability mass is to be given to new word? This cannot be estimated deterministically. But several novel 
-        approaches have been proposed:
+        much probability mass is to be given to new word? This cannot be estimated deterministically. But several smoothing and back-off approaches have been proposed:
 * Good–Turing discounting
 * Witten–Bell discounting
 * Lidstone's smoothing
 * Stupid back-off
 * Katz's back-off model
 * Kneser–Ney smoothing
-
+For more details on n-gram language models: 
+* http://mi.eng.cam.ac.uk/~mjfg/asru15-chen.pdf
+* https://web.stanford.edu/~jurafsky/slp3/3.pdf
 We can see that deterministic approach such as n-gram do not take into account the contextual information in dataset. It is not possible to manually design an algorithm to recognize such patterns. In order to build an algorithm to identify such patterns we need to understand what the logic is supposed to look for. Neither do we have a method to validate if found pattern is correct.
 
 Recurrent Neural Network are best suited for this task. We treat the neural network as a black box, wherein said patterns are recognized such that context data is taken into account. 
