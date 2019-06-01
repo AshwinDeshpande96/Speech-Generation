@@ -140,3 +140,7 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
              thirty: thirty,
              mm: mm }
    This however creates an issue: dict will have only one entry for a root word of different inflections.
+This is substantially larger than it's character wise prediction counterpart. In comparison, the vocabulary for character prediction in worst case is as large as the ASCII character set: 256 characters. For natural language however vocabulary will consist of '[a-z, A-Z]' and punctuation. 
+Prediction using character doesn't mimic human intelligence to form sentences. Humans learn to form sentences by recognizing a word's contextual importance i.e. humans can infer a word's meaning depending on it's pattern of occurence.
+Hence, Recurrent Neural Network are most suited for recognizing sequential patterns.
+This is represented 
