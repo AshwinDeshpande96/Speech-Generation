@@ -3,7 +3,8 @@ Textual Speech generation using LSTM network
 
 We have used a Recurrent Neural Network to generate Word Vectors from a Presidential Speech text.
 
-## 1.1. Dataset
+## 1. Dataset
+
 Dataset used is the 'Corpus of Presidential Speeches' by Grammer Lab. Link as follows:
 
 http://www.thegrammarlab.com/?nor-portfolio=corpus-of-presidential-speeches-cops-and-a-clintontrump-corpus#
@@ -53,9 +54,11 @@ The dataset consist of 43 sets of presidential speeches for 43 different Preside
 *  jqadams's  8 speeches
 *  jackson's  26 speeches
 
-I initially tried using Lyndon B. Johnson's speeches as it has 71 speeches(With 71 individual .txt files). I concatenated these 71 files into a single .txt file. This summed up to a 2.46MM words and a vocabulary size of 9806. Developing a Speech Generator on this requires huge amount of memory. I tried executing on Google Colaboratory which provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. Memory was insufficient for computing the one-hot vector because this vector will be of size (9806 x 9806).
+### 1.1. Data Collection
 
-Hence, I am using Abraham Lincoln's speeches with 15 text files. Concatenating these 15 speeches gives 1.01M words and a vocabulary size of |V| = 6308. Although this succeeded in obtaining the one-hot vector, it consumed a substantial portion of the memory. NLTK library for Lemmatization and Stemming is a handy tool for pruning the vocabulary.
+We initially tried using Lyndon B. Johnson's speeches as it has 71 speeches(With 71 individual .txt files). We concatenated these 71 files into a single .txt file. This summed up to a 2.46MM words and a vocabulary size of 9806. Developing a Speech Generator on this requires huge amount of memory. We tried executing on Google Colaboratory which provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. Memory was insufficient for computing the one-hot vector because this vector will be of size (9806 x 9806).
+
+Hence, We are using Abraham Lincoln's speeches with 15 text files. Concatenating these 15 speeches gives 1.01M words and a vocabulary size of |V| = 6308. Although this succeeded in obtaining the one-hot vector, it consumed a substantial portion of the memory. NLTK library for Lemmatization and Stemming is a handy tool for pruning the vocabulary.
 
 Furthermore, after data pre-processing the Vanilla LSTM Model has a bottleneck at the Softmax Layer (Output Layer) due its size: O(|V|) and slows down training. This can addressed using different variations of Softmax Layer and different Output Layers altogether. Following are the Papers that help in this area.
 * Strategies for Training Large Vocabulary Neural Language Models - (Chen, Grangier, Auli - 2015)
@@ -65,13 +68,13 @@ Furthermore, after data pre-processing the Vanilla LSTM Model has a bottleneck a
 
 <!--- An implementation of Hierarchical Softmax Layer will soon be published soon--->
 
-## 1.2. Data Pre-Processing
+### 1.2. Data Pre-Processing
 The text files contain several punctuation-symbols, numbers, spacings and word inflection. It is important to be careful and try to remove characters or letters such that it helps reduce the vocabulary size. Otherwise if vocabulary is large the numbers of classes increases. And the output layer will now have too many classes to predict. Large number of classes will slow down training and will require large resources and time to converge.
     
     text = "Today's weather condition is cloudy with a 76% of rain. Temperature may remain 
     cool at 21°C with Humidity 61%. Rainfall so far is measured at 130mm."
     
-### 1.2.1. Following punctuations have been removed with the exception of period:
+#### 1.2.1. Following punctuations have been removed with the exception of period:
 
     " & , ? / : ; < > $ #  @ ! % * ( ) [ ] { } \n -
    
@@ -91,7 +94,7 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
    If the text contains - it's and its - both, although they mean different it is treated as the same word. If it 
    appears in the generated text it is open to interpretation for the reader.
 
-### 1.2.2. Numbers are replaced by their word form:
+#### 1.2.2. Numbers are replaced by their word form:
    First we need to find the numbers in the text. We do this using regular expressions.
     
     import re
@@ -114,7 +117,7 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
             text = "Todays weather condition is cloudy with a seventy six of rain . Temperature may remain 
     cool at twenty one C with Humidity sixt one . Rainfall so far is measured at one hundred and thirty mm ."
    Numerical years will be written as 1976 is one thousand and seventy six rather than Nineteen Seventy Six.
-### 1.2.3. Word Inflections are reduced to its root words:
+#### 1.2.3. Word Inflections are reduced to its root words:
 
   Using Lancaster Stemming and WordNet Lemmatization we brought down Vocabulary to 3737.
   
@@ -159,7 +162,9 @@ This approach has several disadvantages:
       Predicted w<sub>i</sub> will be one of |V| words with highest probability, even though w<sub>i</sub> was never
       encountered in training set. To counter this problem, some probability mass from vocabulary is subtracted and assigned
       to the new word. But, how much probability mass is to be given to new word? This cannot be estimated
-      deterministically. However, several approaches have been proposed:
+      deterministically. 
+      
+However, several approaches such as back-off, interpolation and discounting techniques are proposed to mitigate these problems. Some of the popular ones are:
 * Stupid back-off
 * Katz's back-off model
 * Good–Turing discounting
@@ -174,3 +179,19 @@ For more details on n-gram language models:
 We can see that deterministic approach such as n-gram do not take into account the contextual information in dataset. It is not possible to manually design an algorithm to recognize occurence patterns. In order to build an algorithm to identify such patterns we need to understand what the logic is supposed to look for. Neither do we have a method to validate if found pattern is correct.
 
 Recurrent Neural Network are best suited for this task. We treat the neural network as a black box, wherein said patterns are recognized such that sequential context data is taken into account. 
+
+## 2. Model
+
+We use an LSTM network defined as follows: 
+![Image of LSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/Screenshot%202019-06-04%20at%201.08.33%20PM.png)
+
+LSTM's ability to estimate sequential patterns has many applications such as:
+* Gene Classification
+* Speech Synthesis
+* Music Generation
+* Machine Translation
+
+We can see one such implementation here: [Music Generation](https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5)
+Network proposed here is suitable for vocabulary of smaller size. Even though the maximum computation workload is seen at Dense Layer and further Softmax scoring, networks with deeper LSTMs incur larger training time. Hence we use a network of single LSTM layer. This takes several days to train.
+
+Next-Word prediction is not subject to overfitting, because we use the entire dataset for training and none for validation. Because our goal here is to fit a model that behaves exactly like the dataset, out model is a high variance-low bias model. We only minimize the training error without validating across unseen data (Validation Set).
