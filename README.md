@@ -154,9 +154,11 @@ This approach has several disadvantages:
         not 'San'. Vice-versa predicted P(w<sub>i</sub>='Fransisco') could be not likely if its frequency is low in a dataset, 
         even if w<sub>i-1</sub> is 'San'.
 2. When w<sub>i</sub> does not occur in dataset but is the correct word after w<sub>i-1</sub> (It's first occurence is encountered in the test set)
-        
-      To counter this problem, some probability mass from vocabulary is subtracted and assigned to the new word. But, how 
-        much probability mass is to be given to new word? This cannot be estimated deterministically. But several smoothing and back-off approaches have been proposed:
+
+      Predicted $$se(y - \hat{y}) will be one of |V| words with highest probability, even though w<sub>i</sub> was never
+      encountered in training set. To counter this problem, some probability mass from vocabulary is subtracted and assigned
+      to the new word. But, how much probability mass is to be given to new word? This cannot be estimated
+      deterministically. But several smoothing and back-off approaches have been proposed:
 * Good–Turing discounting
 * Witten–Bell discounting
 * Lidstone's smoothing
