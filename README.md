@@ -192,6 +192,9 @@ LSTM's ability to estimate sequential patterns has many applications such as:
 * Machine Translation
 
 We can see one such implementation here: [Music Generation](https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5)
+
 Network proposed here is suitable for vocabulary of smaller size. Even though the maximum computation workload is seen at Dense Layer and further Softmax scoring, networks with deeper LSTMs incur larger training time. Hence we use a network of single LSTM layer. This takes several days to train.
 
-Next-Word prediction is not subject to overfitting, because we use the entire dataset for training and none for validation. Because our goal here is to fit a model that behaves exactly like the dataset, out model is a high variance-low bias model. We only minimize the training error without validating across unseen data (Validation Set).
+Next-Word prediction is not subject to overfitting. Hence, we use the entire dataset for training and none for validation. Because our goal here is to fit a model that behaves exactly like the dataset, out model is a high variance-low bias model. We only minimize the training error without validating across unseen data (Validation Set).
+
+Our next efforts will be minimize the training time, by modifying output probaility scoring method.
