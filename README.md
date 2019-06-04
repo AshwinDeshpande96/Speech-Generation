@@ -152,16 +152,16 @@ This approach has several disadvantages:
         frequently in this text. Hence the probability P(w<sub>i</sub>='Fransisco') is very likely. Even though 'Fransisco' 
         will almost never occur without 'San', P(w<sub>i</sub>='Fransisco') will be most probable even if w<sub>i-1</sub> is 
         not 'San'. Vice-versa predicted P(w<sub>i</sub>='Fransisco') could be not likely if its frequency is low in a
-        dataset, even if w<sub>i-1</sub> is 'San'. This problem is taken care off by back-off methods.
-* Stupid back-off
-* Katz's back-off model
+        dataset, even if w<sub>i-1</sub> is 'San'.
 
 2. When w<sub>i</sub> does not occur in dataset but is the correct word after w<sub>i-1</sub> (It's first occurence is encountered in the test set)
 
       Predicted w<sub>i</sub> will be one of |V| words with highest probability, even though w<sub>i</sub> was never
       encountered in training set. To counter this problem, some probability mass from vocabulary is subtracted and assigned
       to the new word. But, how much probability mass is to be given to new word? This cannot be estimated
-      deterministically. But several smoothing and discounting approaches have been proposed:
+      deterministically. However, several approaches have been proposed:
+* Stupid back-off
+* Katz's back-off model
 * Good–Turing discounting
 * Witten–Bell discounting
 * Lidstone's smoothing
