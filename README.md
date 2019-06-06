@@ -5,9 +5,7 @@ We have used a Recurrent Neural Network to generate Word Vectors from a Presiden
 
 ## 1. Dataset
 
-Dataset used is the 'Corpus of Presidential Speeches' by Grammer Lab. 
-
-Link as follows: [Dataset](http://www.thegrammarlab.com/?nor-portfolio=corpus-of-presidential-speeches-cops-and-a-clintontrump-corpus#)
+Dataset used is the 'Corpus of Presidential Speeches' by Grammer Lab. Link: [Dataset](http://www.thegrammarlab.com/?nor-portfolio=corpus-of-presidential-speeches-cops-and-a-clintontrump-corpus#)
 
 The dataset consist of 43 sets of presidential speeches for 43 different Presidents of the USA.
 *  coolidge's  12 speeches
