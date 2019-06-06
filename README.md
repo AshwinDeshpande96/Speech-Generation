@@ -5,9 +5,9 @@ We have used a Recurrent Neural Network to generate Word Vectors from a Presiden
 
 ## 1. Dataset
 
-Dataset used is the 'Corpus of Presidential Speeches' by Grammer Lab. Link as follows:
+Dataset used is the 'Corpus of Presidential Speeches' by Grammer Lab. 
 
-http://www.thegrammarlab.com/?nor-portfolio=corpus-of-presidential-speeches-cops-and-a-clintontrump-corpus#
+Link as follows: [Dataset](http://www.thegrammarlab.com/?nor-portfolio=corpus-of-presidential-speeches-cops-and-a-clintontrump-corpus#)
 
 The dataset consist of 43 sets of presidential speeches for 43 different Presidents of the USA.
 *  coolidge's  12 speeches
@@ -173,7 +173,8 @@ However, several approaches such as back-off, interpolation and discounting tech
 * Kneser–Ney smoothing
 
 For more details on n-gram language models: 
-* http://mi.eng.cam.ac.uk/~mjfg/asru15-chen.pdf
+* [INVESTIGATION OF BACK-OFF BASED INTERPOLATION BETWEEN
+RECURRENT NEURAL NETWORK AND N-GRAM LANGUAGE MODELS](http://mi.eng.cam.ac.uk/~mjfg/asru15-chen.pdf)
 * [Stanford NLP](https://www.youtube.com/watch?v=Saq1QagC8KY&list=PLQiyVNMpDLKnZYBTUOlSI9mi9wAErFtFm&index=12)
 
 We can see that deterministic approach such as n-gram do not take into account the contextual information in dataset. It is not possible to manually design an algorithm to recognize occurence patterns. In order to build an algorithm to identify such patterns we need to understand what the logic is supposed to look for. Neither do we have a method to validate if found pattern is correct.
