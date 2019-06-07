@@ -63,8 +63,7 @@ Furthermore, after data pre-processing the Vanilla LSTM Model has a bottleneck a
 * Hierarchical Probabilistic Neural Network Language Model - (Morin, Bengio - 2005)
 * A Scalable Hierarchical Distributed Language Model - (Mnih, Hinton - 2008)
 
-
-<!--- An implementation of Hierarchical Softmax Layer will soon be published soon--->
+Our Project: [Hierarchical Softmax](https://github.com/AshwinDeshpande96/Hierarchical-Softmax) addresses this problem.
 
 ### 1.2. Data Pre-Processing
 The text files contain several punctuation-symbols, numbers, spacings and word inflection. It is important to be careful and try to remove characters or letters such that it helps reduce the vocabulary size. Otherwise if vocabulary is large the numbers of classes increases. And the output layer will now have too many classes to predict. Large number of classes will slow down training and will require large resources and time to converge.
