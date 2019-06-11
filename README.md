@@ -197,6 +197,4 @@ Next-Word prediction is not subject to overfitting. Hence, we use the entire dat
 
 Our next efforts will be minimize the training time, by modifying output probaility scoring method.
 
-Full Code: [Unidirectional LSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/president_NLP.ipynb)
-
-[Bidirectional LSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/biLM.ipynb)
+Full Code: [Unidirectional LSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/president_NLP.ipynb)   [Bidirectional LSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/biLM.ipynb)
