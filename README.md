@@ -196,3 +196,7 @@ Network proposed here is suitable for vocabulary of smaller size. Even though th
 Next-Word prediction is not subject to overfitting. Hence, we use the entire dataset for training and none for validation. Because our goal here is to fit a model that behaves exactly like the dataset, out model is a high variance-low bias model. We only minimize the training error without validating across unseen data (Validation Set).
 
 Our next efforts will be minimize the training time, by modifying output probaility scoring method.
+
+Full Code: [Unidirectional LSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/president_NLP.ipynb)
+
+[Bidirectional LSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/biLM.ipynb)
