@@ -120,8 +120,11 @@ Recurrent Neural Network are best suited for this task. We treat the neural netw
 
 ## 2. Model
 
-We use an LSTM network defined as follows: 
-![Image of LSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/Screenshot%202019-06-04%20at%201.08.33%20PM.png)
+Vanilla LSTM network defined as follows: 
+![Image of LSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/vanilla_LSTM.png)
+
+Bidirectional LSTM network defined as follows: 
+![Image of biLSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/bidirection_network.png)
 
 LSTM's ability to estimate sequential patterns has many applications such as:
 * Gene Classification
