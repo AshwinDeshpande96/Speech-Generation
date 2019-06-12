@@ -30,7 +30,7 @@ The dataset consist of 43 sets of presidential speeches for 43 different Preside
 
 ### 1.1. Data Collection
 
-We use Lyndon B. Johnson's speeches as it has 71 speeches (with 71 individual .txt files). We concatenated these 71 files into a single .txt file. This summed up to a 2.82M words and a vocabulary size of 8703. Developing a Speech Generator on this requires huge amount of memory. Google Colaboratory provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. Output vector which would be of shape: (2.82M, 8703) is not suitable for language modelling tasks
+We use Lyndon B. Johnson's speeches as it has 71 speeches (with 71 individual .txt files). We concatenated these 71 files into a single .txt file. This summed up to a 2.82M words and a vocabulary size of 8703. Developing a Speech Generator on this requires huge amount of memory. Google Colaboratory provides 12GB VRAM on Google's NVIDIA K80 powered GPU runtime. Output vector which would be of shape: (2.82M, >8703) is not suitable for language modelling tasks. Filtering words and inflection bring down the size to (1.34M, 8703).
 
 Furthermore, after data pre-processing the Vanilla LSTM Model has a bottleneck at the Softmax Layer (Output Layer) due its size: O(|V|) and slows down training. This is addressed using different variation of probability estimation method.  
 
@@ -120,11 +120,8 @@ Recurrent Neural Network are best suited for this task. We treat the neural netw
 
 ## 2. Model
 
-Vanilla LSTM network defined as follows: 
+* Vanilla LSTM network defined as follows: [Vanilla LSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/president_NLP.ipynb)
 ![Image of LSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/vanilla_LSTM.png)
-
-Bidirectional LSTM network defined as follows: 
-![Image of biLSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/bidirection_network.png)
 
 LSTM's ability to estimate sequential patterns has many applications such as:
 * Gene Classification
@@ -138,6 +135,10 @@ Network proposed here is suitable for vocabulary of smaller size. Even though th
 
 Next-Word prediction is not subject to overfitting. Hence, we use the entire dataset for training and none for validation. Because our goal here is to fit a model that behaves exactly like the dataset, out model is a high variance-low bias model. We only minimize the training error without validating across unseen data (Validation Set).
 
-Our next efforts will be minimize the training time, by modifying output probaility scoring method.
+* Bidirectional LSTM network defined as follows: 
+![Image of biLSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/bidirection_network.png)
 
-Full Code: [Unidirectional LSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/president_NLP.ipynb)   [Bidirectional LSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/biLM.ipynb)
+# Future Work
+
+Bidirectional LSTM can be enriched with Attention Layer, and will be updated in this repo soon.
+
