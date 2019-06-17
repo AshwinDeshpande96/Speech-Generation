@@ -164,7 +164,7 @@ we can infer that word 'her' correponds to 'Hillary' (to the left of the word), 
 ![Image of biLSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/biLM.jpeg)
 <p align='center'> Fig-3: Bidirectional LSTM (Network Architecture) </p>
 
-In NLP tasks such as Word Sense Disambiguation it is necessary to identify the meaning of a word. As in English language word can multiple meanings (Polysemy), this is difficult tasks in absence of word context. For example take the word 'have' can mean:
+In NLP tasks such as Word Sense Disambiguation it is necessary to identify the meaning of a word. As in English language words can haev multiple meanings (Polysemy), this is a difficult task in absence of word context. For example take the word 'have' can mean:
 * possess, own, or hold.
 * experience; undergo.
 * be obliged or find it necessary to do the specified thing.
@@ -175,7 +175,7 @@ In NLP tasks such as Word Sense Disambiguation it is necessary to identify the m
 
 In our text it can mean 'perform the action indicated by the noun specified' which cannot be identified by n-grams models. Further we can see the benefits of having bidirectional model as the references maybe defined in either of the directions. 
 
-Since context sizes are fixed it cannot be said that every important context information is present within given context. Hence, it is necessary to increase the size of the context such that possible references are within that context range of the word. This however has a disadvantage: we cannot definitively correlate the word and it's reference as it's positions are unknown, this is due to the sparsity of the contextual data. This problem is solved using the concept of 'Attention'. This is however, not explored in this project, but you can read about it here [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473)
+Since context sizes are fixed it cannot be said that every important context information is present within given context. Hence, it is necessary to increase the size of the context such that possible references are within that context range of the word. This however has a disadvantage: we cannot definitively correlate the word and it's reference as it's positions are unknown, this is due to the sparsity of the contextual data. This problem is solved using the concept of 'Attention'. This is however, not explored in this project, but you can read about it here: [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473) and [Andrew NG's - Attention Model Intuition](https://www.youtube.com/watch?v=SysgYptB198)
 
 
 
