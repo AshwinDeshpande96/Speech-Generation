@@ -120,8 +120,9 @@ Learn more about it here: [Yoshua Bengio - Presentation](https://www.bilibili.co
 ## 2. Model
 
 * Vanilla LSTM network defined as follows: [Vanilla LSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/president_NLP.ipynb)
-![Image of LSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/vanilla_LSTM.png)
-
+<p align='center'> 
+<img src= 'https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/vanilla_LSTM.png' />
+</p>
 <p align='center'> Fig-1: Vanilla LSTM (Network Definition) </p>
 
 LSTM's ability to estimate sequential patterns has many applications such as:
