@@ -144,8 +144,22 @@ Next-Word prediction is not subject to overfitting. Hence, we use the entire dat
 
 <p align='center'> Fig-2: Bidirectional LSTM (Network Definition) </p>
 
+This type of architecture produces a contextual representation of a word, which is extrememly important in NLP tasks such as:
+* Word Sense Disambiguation
+* Parts of Speech Tagging
+* Named Entity Recognition
+* Coreference Resolution
+
+Furthermore learned embedding feature vectors form input for every other NLP tasks be it:
+* Question Answering
+* Textual Entailment
+* Semantic Role Labelling
+* Sentiment Analysis
+
 ![Image of biLSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/biLM.jpeg)
 
 <p align='center'> Fig-3: Bidirectional LSTM (Network Architecture) </p>
 
+## 3. Results
 
+Since RNNs are a highly sequential type of network, it is not very parallelizable. This property incurs huge training times. Our network was trained for approximately 7 days. 
