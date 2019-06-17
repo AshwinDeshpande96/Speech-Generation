@@ -150,7 +150,7 @@ This type of architecture produces a contextual representation of a word, which 
 * Named Entity Recognition
 * Coreference Resolution
 
-Furthermore learned embedding feature vectors form input for every other NLP tasks be it:
+Furthermore learned embedding feature vectors form input for every other NLP tasks:
 * Question Answering
 * Textual Entailment
 * Semantic Role Labelling
