@@ -3,8 +3,8 @@ Textual Speech generation using LSTM network
 
 We test several popular architecture for language modelling and test for word-prediction task.
 * Vanilla LSTM with 100 context words
-* Bidirectional LSTM with 20 context words
-* Bidirection LSTM with Attention Layer
+* Bidirectional LSTM with 10 context words
+
 
 ## 1. Dataset
 
@@ -42,7 +42,7 @@ The text files contain several punctuation-symbols, numbers, spacings and word i
     text = "Today's weather condition is cloudy with a 76% of rain. Temperature may remain 
     cool at 21°C with Humidity 61%. Rainfall so far is measured at 130mm."
     
-#### 1.2.1. Following punctuations have been removed with the exception of period:
+#### 1.2.1. Following punctuations have been removed:
 
     " ' . & , ? / : ; < > $ #  @ ! % * ( ) [ ] { } \n -
    
@@ -116,7 +116,9 @@ RECURRENT NEURAL NETWORK AND N-GRAM LANGUAGE MODELS](http://mi.eng.cam.ac.uk/~mj
 
 We can see that deterministic approach such as n-gram do not take into account the contextual information in dataset. It is not possible to manually design an algorithm to recognize occurence patterns. In order to build an algorithm to identify such patterns we need to understand what the logic is supposed to look for. Neither do we have a method to validate if found pattern is correct.
 
-Recurrent Neural Network are best suited for this task. We treat the neural network as a black box, wherein said patterns are recognized such that sequential context data is taken into account. 
+Recurrent Neural Network are best suited for this task. We treat the neural network as a black box, wherein said patterns are recognized such that sequential context data is taken into account. RNNs still fail to take into account the long-distance context dependencies, as they are sparsely distributed throughout the data.
+
+Learn more about it here: [Yoshua Bengio - Presentation](https://www.bilibili.com/video/av34864474/), [Shortcomings of regular Encoder-Decoder Model(without Attention)](https://machinelearningmastery.com/encoder-decoder-attention-sequence-to-sequence-prediction-keras/)
 
 ## 2. Model
 
