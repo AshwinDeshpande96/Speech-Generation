@@ -17,13 +17,10 @@ The dataset consist of 43 sets of presidential speeches for 43 different Preside
 4.  ford's  14 speeches
 5.  pierce's  15 speeches
 6.  lincoln's  15 speeches
-
-.
-
-.
-
-.
-
+*
+*
+*
+*
 41.  grant's  32 speeches
 42.  jqadams's  8 speeches
 43.  jackson's  26 speeches
