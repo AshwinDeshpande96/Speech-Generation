@@ -140,7 +140,7 @@ Next-Word prediction is not subject to overfitting. Hence, we use the entire dat
 * Bidirectional LSTM network defined as follows: [biLSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/biLM.ipynb)
 ![Image of biLSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/bidirection_network.png)
 
-![Image of biLSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/biLM.png)
+![Image of biLSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/biLM.jpeg)
 
 
 
