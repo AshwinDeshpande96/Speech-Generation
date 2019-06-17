@@ -125,6 +125,8 @@ Learn more about it here: [Yoshua Bengio - Presentation](https://www.bilibili.co
 * Vanilla LSTM network defined as follows: [Vanilla LSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/president_NLP.ipynb)
 ![Image of LSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/vanilla_LSTM.png)
 
+<p align='center'> Fig-1: Vanilla LSTM (Network Definition) </p>
+
 LSTM's ability to estimate sequential patterns has many applications such as:
 * Gene Classification
 * Speech Synthesis
@@ -140,7 +142,10 @@ Next-Word prediction is not subject to overfitting. Hence, we use the entire dat
 * Bidirectional LSTM network defined as follows: [biLSTM Network](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/biLM.ipynb)
 ![Image of biLSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/bidirection_network.png)
 
+<p align='center'> Fig-2: Bidirectional LSTM (Network Definition) </p>
+
 ![Image of biLSTM](https://github.com/AshwinDeshpande96/Speech-Generation/blob/master/biLM.jpeg)
 
+<p align='center'> Fig-3: Bidirectional LSTM (Network Architecture) </p>
 
 
