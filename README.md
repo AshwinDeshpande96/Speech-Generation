@@ -1,7 +1,7 @@
 # Speech-Generation
 Textual Speech generation using LSTM network
 
-We test several popular architecture for language modelling and test for word-prediction task.
+We test two popular architecture for language modelling and test for word-prediction task.
 * Vanilla LSTM with 100 context words
 * Bidirectional LSTM with 10 context words
 
